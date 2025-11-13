@@ -10,9 +10,9 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 INPUT_FOLDER = os.path.join(script_dir, '..', 'input')
 OUTPUT_FOLDER = os.path.join(script_dir, '..', 'output')
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+os.makedirs(INPUT_FOLDER, exist_ok=True)
 
 # --- Main Processing Loop ---
-plt.show(block=False)
 model = utils.initialize_cellpose_model(model_type='cpsam')
 valid_extensions = ('.png', '.jpg', '.jpeg', '.tif', '.tiff')
 image_files = [f for f in os.listdir(INPUT_FOLDER) if f.lower().endswith(valid_extensions)]
