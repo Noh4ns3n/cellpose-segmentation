@@ -57,29 +57,46 @@ def save_results_csv(filename, bacteria_count, output_dir, csv_file_name='segmen
         
     return csv_path
 
-def save_masks_npz(masks, filename, output_dir):
-    """Saves the segmentation mask array in compressed numpy format."""
-    base_name, _ = os.path.splitext(filename)
-    output_path = os.path.join(output_dir, f'{base_name}_masks.npz')
-    np.savez_compressed(output_path, masks=masks)
-    # Return the path so the main script can use it if needed
-    return output_path
+def save_masks_npz(masks, base_filename, output_dir):
+    """
+    Saves the segmentation mask array in compressed numpy format.
+    base_filename can contain subdirectory paths (e.g., 'batch1/imageA').
+    """
+    # Construct the full output path
+    output_path_base = os.path.join(output_dir, base_filename)
+    
+    # Ensure the subdirectory path exists (e.g., creates 'output/batch1')
+    output_subdir = os.path.dirname(output_path_base)
+    os.makedirs(output_subdir, exist_ok=True)
+    
+    final_output_path = f'{output_path_base}_masks.npz'
+    np.savez_compressed(final_output_path, masks=masks)
+    return final_output_path
 
-def save_visualization(img, masks, filename, output_dir, count):
-    """Creates and saves a composite image of the original image + masks."""
+def save_visualization(img, masks, base_filename, output_dir, count):
+    """
+    Creates and saves a composite image of the original image + masks.
+    base_filename can contain subdirectory paths (e.g., 'batch1/imageA').
+    """
     # plt.ioff()
     fig, ax = plt.subplots(figsize=(10, 10))
     ax.imshow(img, cmap='gray')
     ax.imshow(masks, cmap='jet', alpha=0.5)
-    ax.set_title(f'{count} cells detected in {filename}')
+    ax.set_title(f'{count} cells detected in {os.path.basename(base_filename)}')
     ax.axis('off')
     
-    base_name, _ = os.path.splitext(filename)
-    output_path = os.path.join(output_dir, f'{base_name}_viz.png')
-    fig.savefig(output_path, bbox_inches='tight')
-    # plt.close(fig)
-    # plt.ion()
-    return fig, output_path
+    # Construct the full output path
+    output_path_base = os.path.join(output_dir, base_filename)
+
+    # Ensure the subdirectory path exists
+    output_subdir = os.path.dirname(output_path_base)
+    os.makedirs(output_subdir, exist_ok=True)
+    
+    final_output_path = f'{output_path_base}_viz.png'
+    fig.savefig(final_output_path, bbox_inches='tight')
+    
+    # plt.close(fig) is now in display_img()
+    return fig, final_output_path
 
 def display_img(fig, delay = 1.0):
     """
