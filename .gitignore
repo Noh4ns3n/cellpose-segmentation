@@ -12,3 +12,6 @@ wheels/
 # Data
 input
 output
+
+# MacOS
+.DS_Store

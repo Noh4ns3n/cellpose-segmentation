@@ -66,14 +66,14 @@ for i, data in enumerate(image_data):
         img = np.array(Image.open(full_path))
         masks, flows, diams = model.eval(img, diameter=DIAMETER) 
         
-        nombre_bacteries = masks.max() 
-        print(f"Result: {nombre_bacteries} bacteria detected.")
+        number_of_cells = masks.max() 
+        print(f"Result: {number_of_cells} cells detected.")
 
         # --- Save Results ---
-        utils.save_results_csv(output_filename, nombre_bacteries, OUTPUT_FOLDER)
+        utils.save_results_csv(output_filename, number_of_cells, OUTPUT_FOLDER)
         unique_base_name = os.path.splitext(output_filename)[0]
         utils.save_masks_npz(masks, unique_base_name, OUTPUT_FOLDER)
-        fig, output_path = utils.save_visualization(img, masks, unique_base_name, OUTPUT_FOLDER, nombre_bacteries)
+        fig, output_path = utils.save_count_visualization(img, masks, unique_base_name, OUTPUT_FOLDER, number_of_cells)
         
     except FileNotFoundError:
         print(f"ERROR: File not found at {full_path}. Skipping.")
