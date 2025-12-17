@@ -43,7 +43,7 @@ If you don't have UV installed: [Install UV](https://github.com/astral-sh/uv)
 
 1.  **Configure:** Open `src/segmentation.py` and edit the top section:
     ```python
-    CHANNEL_NAME = 'green'  # 'green', 'red', 'blue', or 'gray'
+    CHANNEL_NAME = 'green'  # 'green', 'red', 'blue', or 'gray'. It is generally best to use the channel that gives a cytosolic labeling.
     MODEL_TYPE = 'cpsam'    # 'cpsam' (default) or any other model you downloaded on your end
     DIAMETER = 150          # Adjust with the mean diameter (in px) of your cells if you see wrong results
     ```
