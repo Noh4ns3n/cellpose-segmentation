@@ -85,8 +85,8 @@ source .venv/bin/activate
 # 2. Uninstall the wrong version
 uv pip uninstall torch torchvision torchaudio
 
-# 3. Install the CUDA-enabled version (Adjust cu118 to your driver version if needed)
-uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# 3. Install the CUDA-enabled version (Adjust cu130 to your driver version if needed)
+uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
 ```
 
 ### ❌ Images look black / "White Blob"
