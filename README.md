@@ -20,7 +20,7 @@ If you don't have UV installed: [Install UV](https://github.com/astral-sh/uv)
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/Noh4ns3n/cellpose-segmentation.git](https://github.com/Noh4ns3n/cellpose-segmentation.git)
+    git clone https://github.com/Noh4ns3n/cellpose-segmentation.git
     cd cellpose-segmentation
     ```
 
@@ -39,7 +39,7 @@ If you don't have UV installed: [Install UV](https://github.com/astral-sh/uv)
 ## 3. Workflows
 
 ### Option A: Advanced Segmentation (`segmentation.py`)
-*Best for: Confocal microscopy, 12-bit/16-bit TIFFs, fibrous structures (actin), and generating ImageJ ROIs.*
+*Best for: Confocal microscopy, 12-bit/16-bit TIFFs, and generating ImageJ ROIs.*
 
 1.  **Configure:** Open `src/segmentation.py` and edit the top section:
     ```python
@@ -52,7 +52,7 @@ If you don't have UV installed: [Install UV](https://github.com/astral-sh/uv)
     python src/segmentation.py
     ```
 3.  **Output (`output/` folder):**
-    * `_overlay.png`: Normalized visualization (visible even for dark images).
+    * `_overlay.png`: Normalized visualization.
     * `_rois.zip`: Drag and drop this into ImageJ/Fiji to see editable masks.
     * `_masks.npz`: Raw data for Python analysis.
 
@@ -86,7 +86,7 @@ source .venv/bin/activate
 uv pip uninstall torch torchvision torchaudio
 
 # 3. Install the CUDA-enabled version (Adjust cu118 to your driver version if needed)
-uv pip install torch torchvision torchaudio --index-url [https://download.pytorch.org/whl/cu118](https://download.pytorch.org/whl/cu118)
+uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
 ### ❌ Images look black / "White Blob"
